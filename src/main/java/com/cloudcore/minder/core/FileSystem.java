@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileSystem {
-
 	 /* Fields */
     public static final String RootPath = Paths.get("").toAbsolutePath().toString() + File.separator;
 

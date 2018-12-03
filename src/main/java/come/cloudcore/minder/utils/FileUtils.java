@@ -1,7 +1,4 @@
-package com.cloudcore.minder.utils;
-
-import com.cloudcore.minder.core.Config;
-import com.cloudcore.minder.core.FileSystem;
+package come.cloudcore.minder.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,11 +8,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.cloudcore.minder.core.Config;
+import com.cloudcore.minder.core.FileSystem;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 public class FileUtils {
- /* Methods */
+/* Methods */
     
     /**
      * Returns an array containing all filenames in a directory.
