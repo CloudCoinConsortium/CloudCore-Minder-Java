@@ -17,8 +17,8 @@ public class SimpleLogger {
     private static String fullFilePath = FileSystem.LogsFolder;
 
 
-    public static void writeLog(String filenameDetails, String logFileDetails) {
-        String filepath = fullFilePath + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS")).toLowerCase() + '-' + filenameDetails;
+    public static void writeLog(String logFileDetails) {
+        String filepath = fullFilePath + "minderLog";
         String finalFilepath = filepath + ".log";
         int counter = 0;
 

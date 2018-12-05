@@ -6,7 +6,6 @@ public class Config {
     public static final String TAG_MINDER = "Minder";
 
     public static final String TAG_GALLERY = "Gallery";
-    public static final String TAG_Minder = "Minder";
     public static final String TAG_BANK = "Bank";
     public static final String TAG_FRACKED = "Fracked";
 

@@ -28,13 +28,13 @@ public class FileSystem {
             + Config.TAG_MINDER + File.separator;
     public static String AccountFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_ACCOUNTS 
             + File.separator + Config.TAG_PASSWORDS + File.separator;
-    public static String backupFolder = LogsFolder + Config.TAG_MINDER_DEFAULT + File.separator;
 
-    public static String GalleryFolder = RootPath + Config.TAG_GALLERY + File.separator;
-    public static String BankFolder = RootPath + Config.TAG_BANK + File.separator;
-    public static String FrackedFolder = RootPath + Config.TAG_FRACKED + File.separator;
+    public static String GalleryFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_GALLERY + File.separator;
+    public static String BankFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator +  Config.TAG_BANK + File.separator;
+    public static String MinderFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_MINDER+ File.separator;
+    public static String FrackedFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_FRACKED + File.separator;
 
-    public static String Tag_account = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_ACCOUNTS;
+    public static String Tag_account = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_ACCOUNTS;
 //    public static String TemplateFolder = RootPath + Config.TAG_TEMPLATES + File.separator;
 
 
@@ -50,6 +50,8 @@ public class FileSystem {
             Files.createDirectories(Paths.get(RootPath));
             Files.createDirectories(Paths.get(CommandFolder));
             Files.createDirectories(Paths.get(LogsFolder));
+            Files.createDirectories(Paths.get(BankFolder));
+            Files.createDirectories(Paths.get(MinderFolder));
         } catch (IOException e) {
             System.out.println("FS#CD: " + e.getLocalizedMessage());
             return false;
@@ -187,7 +189,7 @@ public class FileSystem {
                         StandardCopyOption.REPLACE_EXISTING);
                 String fileSeparator = (File.separatorChar == '\\') ? "\\\\" : File.separator;
                 String[] folders = targetFolder.split(fileSeparator);
-                SimpleLogger.writeLog(coin.getSn() + "." + folders[folders.length - 1], "");
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
