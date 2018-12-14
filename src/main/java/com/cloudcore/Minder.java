@@ -1,5 +1,8 @@
 package com.cloudcore;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,8 +10,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
+import com.cloudcore.authenticator.core.Config;
 import com.cloudcore.authenticator.raida.Node;
 import com.cloudcore.authenticator.raida.RAIDA;
+import com.cloudcore.authenticator.utils.CoinUtils;
 import com.cloudcore.minder.core.CloudCoin;
 import com.cloudcore.minder.core.FileSystem;
 import com.cloudcore.minder.utils.SimpleLogger;
@@ -70,9 +75,25 @@ public class Minder {
                 System.out.println("RAIDA#PNC:" + e.getLocalizedMessage());
             }
 
+            MessageDigest encrypter;
+    		try {
+    			encrypter = MessageDigest.getInstance("md5");
+    		} catch (NoSuchAlgorithmException e) {
+    			e.printStackTrace();
+    			return false;
+    		}
+    		
             for (int j = 0; j < coins.size(); j++) {
                 CloudCoin coin = coins.get(j);
-                coin.setAn((ArrayList<String>) Arrays.asList(coin.pan));
+                
+                ArrayList<String> vans = new ArrayList<>();
+        		for (int i = 0; i < Config.nodeCount; i++) {
+        			String hashSeed = coin.getSn() + i + password.toLowerCase();
+        			byte[] hashBytes = encrypter.digest(hashSeed.getBytes(StandardCharsets.UTF_8));
+        			vans.add(CoinUtils.bytesToHex(hashBytes).toLowerCase());
+        		}
+        		
+                coin.setAn(vans);
     			coin.setFolder(FileSystem.BankFolder);
     			FileSystem.moveAndUpdateCoin(coin, FileSystem.MinderFolder, FileSystem.BankFolder);
     			String currentDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss:SSS")).toLowerCase();
