@@ -15,6 +15,7 @@ public class Main {
         ArrayList<Command> commands;
         
         try {
+            singleRun = isSingleRun(args);
             if (args.length != 0 && Files.exists(Paths.get(args[0]))) {
                 System.out.println("New root path: " + args[0]);
                 FileSystem.changeRootPath(args[0]);
@@ -32,6 +33,7 @@ public class Main {
                         successful = Minder.toMinder(command.passphrase, command.cloudCoinAmount);
                     else if ("fromMind".equals(command.command))
                         successful = Minder.fromMinder(command.passphrase, command.cloudCoinAmount);
+                    exitIfSingleRun();
                 }
 
             while (!stop) {
@@ -44,11 +46,24 @@ public class Main {
                         else if ("fromMind".equals(command.command))
                             successful = Minder.fromMinder(command.passphrase, command.cloudCoinAmount);
                         FileSystem.archiveCommand(command);
+                        exitIfSingleRun();
                     }
                 }
             }
         } catch (Exception e) {
             System.out.println("Uncaught exception - " + e.getLocalizedMessage());
         }
+    }
+
+    public static boolean singleRun = false;
+    public static boolean isSingleRun(String[] args) {
+        for (String arg : args)
+            if (arg.equals("singleRun"))
+                return true;
+        return false;
+    }
+    public static void exitIfSingleRun() {
+        if (singleRun)
+            System.exit(0);
     }
 }
