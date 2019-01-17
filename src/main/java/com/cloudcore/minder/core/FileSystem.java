@@ -20,21 +20,24 @@ import com.cloudcore.minder.utils.Utils;
 import com.google.gson.Gson;
 
 public class FileSystem {
-	 /* Fields */
-    public static final String RootPath = Paths.get("").toAbsolutePath().toString() + File.separator;
 
-    public static String CommandFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_COMMAND + File.separator;
-    public static String LogsFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_LOGS + File.separator
+
+	 /* Fields */
+
+    public static String RootPath = "C:\\Users\\Public\\Documents\\CloudCoin\\";
+
+    public static String CommandFolder = RootPath + File.separator + Config.TAG_COMMAND + File.separator;
+    public static String LogsFolder = RootPath + File.separator + Config.TAG_LOGS + File.separator
             + Config.TAG_MINDER + File.separator;
-    public static String AccountFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_ACCOUNTS 
+    public static String AccountFolder = RootPath + File.separator + Config.TAG_ACCOUNTS
             + File.separator + Config.TAG_PASSWORDS + File.separator;
 
-    public static String GalleryFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_GALLERY + File.separator;
-    public static String BankFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator +  Config.TAG_BANK + File.separator;
-    public static String MinderFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_MINDER+ File.separator;
-    public static String FrackedFolder = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_FRACKED + File.separator;
+    public static String GalleryFolder = RootPath + File.separator + Config.TAG_GALLERY + File.separator;
+    public static String BankFolder = RootPath + File.separator +  Config.TAG_BANK + File.separator;
+    public static String MinderFolder = RootPath + File.separator + Config.TAG_MINDER+ File.separator;
+    public static String FrackedFolder = RootPath + File.separator + Config.TAG_FRACKED + File.separator;
 
-    public static String Tag_account = RootPath + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_CLOUD_COIN + File.separator + Config.TAG_ACCOUNTS;
+    public static String Tag_account = RootPath + File.separator + Config.TAG_ACCOUNTS;
 //    public static String TemplateFolder = RootPath + Config.TAG_TEMPLATES + File.separator;
 
 
@@ -58,7 +61,23 @@ public class FileSystem {
         }
 
         return true;
-    }   
+    }
+
+    public static void changeRootPath(String rootPath) {
+        RootPath = rootPath;
+        CommandFolder = RootPath + File.separator + Config.TAG_COMMAND + File.separator;
+        LogsFolder = RootPath + File.separator + Config.TAG_LOGS + File.separator
+                + Config.TAG_MINDER + File.separator;
+        AccountFolder = RootPath + File.separator + Config.TAG_ACCOUNTS + File.separator
+                + Config.TAG_PASSWORDS + File.separator;
+
+        GalleryFolder = RootPath + File.separator + Config.TAG_GALLERY + File.separator;
+        BankFolder = RootPath + File.separator +  Config.TAG_BANK + File.separator;
+        MinderFolder = RootPath + File.separator + Config.TAG_MINDER+ File.separator;
+        FrackedFolder = RootPath + File.separator + Config.TAG_FRACKED + File.separator;
+
+        Tag_account = RootPath + File.separator + Config.TAG_ACCOUNTS;
+    }
 
     /**
      * Creates directories in the location defined by RootPath.

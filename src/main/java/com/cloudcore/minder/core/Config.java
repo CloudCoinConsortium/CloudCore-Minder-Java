@@ -11,8 +11,7 @@ public class Config {
 
     // name of file which will be placed in command folder
     public static String TAG_file_name = "minder";
-    
-    public static final String TAG_CLOUD_COIN = "CloudCoin";
+
     public static final String TAG_COMMAND = "Command";
     public static final String TAG_MINDER_DEFAULT = "Minder";
     public static final String TAG_LOGS = "Logs";
